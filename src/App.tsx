@@ -4,10 +4,11 @@ function App() {
   const header = "THINGS TO DO";
 
   const [todos, setTodos] = useState(["Learn Alphabets", "Laundary"]);
+  // const [todos, setTodos] = useState([]);
 
   return (
     <>
-      <div className="container">
+      <form className="container">
         <h1 className="text-center m-4">{header}</h1>
         <div>
           <input
@@ -15,15 +16,19 @@ function App() {
             className="form-control mb-3"
             placeholder="Add a task"
           />
+          <button type="submit" className="btn btn-primary">
+            Add
+          </button>
+
           {todos.map((todo, index) => (
-            <div className="form-check" key={index}>
+            <div className="form-check  mt-3" key={index}>
               <input
                 className="form-check-input"
                 type="checkbox"
                 value=""
                 id={todo}
               ></input>
-              <label className="form-check-label mb-2" htmlFor={todo}>
+              <label className="form-check-label" htmlFor={todo}>
                 {todo}
               </label>
             </div>
@@ -81,7 +86,7 @@ function App() {
             </div>
           </div>
         </div>
-      </div>
+      </form>
     </>
   );
 }
