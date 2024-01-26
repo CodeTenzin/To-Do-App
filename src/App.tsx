@@ -37,25 +37,36 @@ function App() {
           </button>
 
           {todos.map((todo, index) => (
-            <div className="form-check  mt-3" key={index}>
-              <input
-                className="form-check-input"
-                type="checkbox"
-                value=""
-                id={todo}
-                // onChange={() => setStrike([...strike, ])}
-              />
-              <label
-                className="form-check-label"
-                // className={
-                //   strike
-                //     ? "form-check-label text-decoration-line-through"
-                //     : "form-check-label"
-                // }
-                htmlFor={todo}
-              >
-                {todo}
-              </label>
+            <div
+              className="d-flex justify-content-between form-check  mt-3"
+              key={index}
+            >
+              <div>
+                <input
+                  className="form-check-input"
+                  type="checkbox"
+                  value=""
+                  id={todo}
+                  // onChange={() => setStrike([...strike, ])}
+                />
+                <label
+                  className="form-check-label text-secondary"
+                  // className={
+                  //   strike
+                  //     ? "form-check-label text-decoration-line-through"
+                  //     : "form-check-label"
+                  // }
+                  htmlFor={todo}
+                >
+                  {todo}
+                </label>
+              </div>
+              <div>
+                <button className="btn btn-outline-secondary me-2">
+                  Update
+                </button>
+                <button className="btn btn-outline-danger">Delete</button>
+              </div>
             </div>
           ))}
 
