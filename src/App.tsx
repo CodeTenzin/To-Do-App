@@ -32,7 +32,7 @@ function App() {
             placeholder="Add a task"
             ref={addRef}
           />
-          <button type="submit" className="btn btn-primary">
+          <button type="submit" className="btn btn-primary d-none">
             Add
           </button>
 
@@ -59,12 +59,12 @@ function App() {
             </div>
           ))}
 
-          <div className="d-flex justify-content-between mt-3">
-            <div>
-              <button className="ms-3" type="button">
+          <div className="d-flex justify-content-between text-white bg-primary bg-gradient bg-opacity-50 mt-3 p-1">
+            <div className="m-2">
+              <button className="btn btn-outline-light ms-3" type="button">
                 +
               </button>
-              <button className="ms-2" type="button">
+              <button className="btn btn-outline-light ms-2" type="button">
                 🔎
               </button>
               <span className="ms-3">|</span>
@@ -75,7 +75,7 @@ function App() {
               </span>
             </div>
             {/* <div className="d-flex justify-content-around"> */}
-            <div className="d-flex justify-content-between">
+            <div className="d-flex justify-content-between m-2">
               <input
                 type="radio"
                 className="btn-check"
