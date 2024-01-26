@@ -3,26 +3,30 @@ import { FormEvent, useRef, useState } from "react";
 // TODO: update and delete button adds empty string.
 //
 
-interface Strike {
+interface Task {
   id: number;
-  striked: boolean;
+  task: string;
 }
 
 function App() {
   const header = "THINGS TO DO";
 
   // const [todos, setTodos] = useState(["Learn Alphabets", "Laundary"]);
-  const [todos, setTodos] = useState<string[]>([]);
-  // const [strike, setStrike] = useState<Strike[]>([]);
+  const [todos, setTodos] = useState<Task[]>([]);
   const addRef = useRef<HTMLInputElement>(null);
+
+  let globalId = 0;
 
   const handleEvent = (event: FormEvent) => {
     event.preventDefault();
     if (addRef.current !== null && addRef.current.value.length > 0) {
-      setTodos([addRef.current.value, ...todos]);
+      const task: Task = { id: globalId + 1, task: addRef.current.value };
+      setTodos([task, ...todos]);
       addRef.current.value = "";
     }
   };
+
+  // const handleUpdate = () => {};
 
   return (
     <>
@@ -49,7 +53,7 @@ function App() {
                   className="form-check-input"
                   type="checkbox"
                   value=""
-                  id={todo}
+                  id={todo.task}
                   // onChange={() => setStrike([...strike, ])}
                 />
                 <label
@@ -59,9 +63,9 @@ function App() {
                   //     ? "form-check-label text-decoration-line-through"
                   //     : "form-check-label"
                   // }
-                  htmlFor={todo}
+                  htmlFor={todo.task}
                 >
-                  {todo}
+                  {todo.task}
                 </label>
               </div>
               <div>
