@@ -1,10 +1,16 @@
 import { FormEvent, useRef, useState } from "react";
 
+interface Strike {
+  id: number;
+  striked: boolean;
+}
+
 function App() {
   const header = "THINGS TO DO";
 
   // const [todos, setTodos] = useState(["Learn Alphabets", "Laundary"]);
   const [todos, setTodos] = useState<string[]>([]);
+  // const [strike, setStrike] = useState<Strike[]>([]);
   const addRef = useRef<HTMLInputElement>(null);
 
   const handleEvent = (event: FormEvent) => {
@@ -37,8 +43,17 @@ function App() {
                 type="checkbox"
                 value=""
                 id={todo}
-              ></input>
-              <label className="form-check-label" htmlFor={todo}>
+                // onChange={() => setStrike([...strike, ])}
+              />
+              <label
+                className="form-check-label"
+                // className={
+                //   strike
+                //     ? "form-check-label text-decoration-line-through"
+                //     : "form-check-label"
+                // }
+                htmlFor={todo}
+              >
                 {todo}
               </label>
             </div>
