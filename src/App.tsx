@@ -1,20 +1,30 @@
-import { useState } from "react";
+import { FormEvent, useRef, useState } from "react";
 
 function App() {
   const header = "THINGS TO DO";
 
-  const [todos, setTodos] = useState(["Learn Alphabets", "Laundary"]);
-  // const [todos, setTodos] = useState([]);
+  // const [todos, setTodos] = useState(["Learn Alphabets", "Laundary"]);
+  const [todos, setTodos] = useState<string[]>([]);
+  const addRef = useRef<HTMLInputElement>(null);
+
+  const handleEvent = (event: FormEvent) => {
+    event.preventDefault();
+    if (addRef.current !== null) {
+      setTodos([addRef.current.value, ...todos]);
+      addRef.current.value = "";
+    }
+  };
 
   return (
     <>
-      <form className="container">
+      <form className="container" onSubmit={handleEvent}>
         <h1 className="text-center m-4">{header}</h1>
         <div>
           <input
             type="text"
             className="form-control mb-3"
             placeholder="Add a task"
+            ref={addRef}
           />
           <button type="submit" className="btn btn-primary">
             Add
