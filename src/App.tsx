@@ -1,5 +1,8 @@
 import { FormEvent, useRef, useState } from "react";
 
+// TODO: update and delete button adds empty string.
+//
+
 interface Strike {
   id: number;
   striked: boolean;
@@ -15,7 +18,7 @@ function App() {
 
   const handleEvent = (event: FormEvent) => {
     event.preventDefault();
-    if (addRef.current !== null) {
+    if (addRef.current !== null && addRef.current.value.length > 0) {
       setTodos([addRef.current.value, ...todos]);
       addRef.current.value = "";
     }
@@ -32,9 +35,9 @@ function App() {
             placeholder="Add a task"
             ref={addRef}
           />
-          <button type="submit" className="btn btn-primary d-none">
+          {/* <button type="submit" className="btn btn-primary d-none">
             Add
-          </button>
+          </button> */}
 
           {todos.map((todo, index) => (
             <div
@@ -72,9 +75,16 @@ function App() {
 
           <div className="d-flex justify-content-between text-white bg-primary bg-gradient bg-opacity-50 mt-3 p-1">
             <div className="m-2">
-              <button className="btn btn-outline-light ms-3" type="button">
+              <button
+                className="btn btn-outline-light ms-3"
+                type="button"
+                onClick={handleEvent}
+              >
                 +
               </button>
+              {/* <input className="btn btn-outline-light ms-3" type="button">
+                +
+              </input> */}
               <button className="btn btn-outline-light ms-2" type="button">
                 🔎
               </button>
