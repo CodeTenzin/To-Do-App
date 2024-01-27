@@ -1,155 +1,19 @@
-import { FormEvent, useRef, useState } from "react";
+import { useState } from "react";
+import InputField, { Todo } from "./components/InputField";
 
-// TODO: update and delete button adds empty string.
-//
-
-interface Task {
-  id: number;
-  task: string;
-}
-
-function App() {
-  const header = "THINGS TO DO";
-
-  // const [todos, setTodos] = useState(["Learn Alphabets", "Laundary"]);
-  const [todos, setTodos] = useState<Task[]>([]);
-  const addRef = useRef<HTMLInputElement>(null);
-
-  let globalId = 0;
-
-  const handleEvent = (event: FormEvent) => {
-    event.preventDefault();
-    if (addRef.current !== null && addRef.current.value.length > 0) {
-      const task: Task = { id: globalId + 1, task: addRef.current.value };
-      setTodos([task, ...todos]);
-      addRef.current.value = "";
-    }
-  };
-
-  // const handleUpdate = () => {};
+const App = () => {
+  const [todos, setTodos] = useState<Todo[]>([]);
 
   return (
-    <>
-      <form className="container" onSubmit={handleEvent}>
-        <h1 className="text-center m-4">{header}</h1>
-        <div>
-          <input
-            type="text"
-            className="form-control mb-3"
-            placeholder="Add a task"
-            ref={addRef}
-          />
-          {/* <button type="submit" className="btn btn-primary d-none">
-            Add
-          </button> */}
-
-          {todos.map((todo, index) => (
-            <div
-              className="d-flex justify-content-between form-check  mt-3"
-              key={index}
-            >
-              <div>
-                <input
-                  className="form-check-input"
-                  type="checkbox"
-                  value=""
-                  id={todo.task}
-                  // onChange={() => setStrike([...strike, ])}
-                />
-                <label
-                  className="form-check-label text-secondary"
-                  // className={
-                  //   strike
-                  //     ? "form-check-label text-decoration-line-through"
-                  //     : "form-check-label"
-                  // }
-                  htmlFor={todo.task}
-                >
-                  {todo.task}
-                </label>
-              </div>
-              <div>
-                <button className="btn btn-outline-secondary me-2">
-                  Update
-                </button>
-                <button className="btn btn-outline-danger">Delete</button>
-              </div>
-            </div>
-          ))}
-
-          <div className="d-flex justify-content-between text-white bg-primary bg-gradient bg-opacity-50 mt-3 p-1">
-            <div className="m-2">
-              <button
-                className="btn btn-outline-light ms-3"
-                type="button"
-                onClick={handleEvent}
-              >
-                +
-              </button>
-              {/* <input className="btn btn-outline-light ms-3" type="button">
-                +
-              </input> */}
-              <button className="btn btn-outline-light ms-2" type="button">
-                🔎
-              </button>
-              <span className="ms-3">|</span>
-              <span className="ms-3">
-                {todos.length > 1
-                  ? `${todos.length} items left`
-                  : `${todos.length} item left`}
-              </span>
-            </div>
-            {/* <div className="d-flex justify-content-around"> */}
-            <div className="d-flex justify-content-between m-2">
-              <input
-                type="radio"
-                className="btn-check"
-                name="options"
-                id="All"
-                autoComplete="off"
-              />
-              <label className="btn me-3" htmlFor="All">
-                All
-              </label>
-
-              <input
-                type="radio"
-                className="btn-check"
-                name="options"
-                id="Active"
-                autoComplete="off"
-              />
-              <label className="btn me-3" htmlFor="Active">
-                Active
-              </label>
-
-              <input
-                type="radio"
-                className="btn-check"
-                name="options"
-                id="Completed"
-                autoComplete="off"
-              />
-              <label className="btn me-3" htmlFor="Completed">
-                Completed
-              </label>
-            </div>
-          </div>
-        </div>
-      </form>
-    </>
+    <div className="container">
+      <InputField
+        onSubmit={(new_task) => {
+          setTodos([{ ...new_task, id: todos.length + 1 }, ...todos]);
+          console.log(todos);
+        }}
+      />
+    </div>
   );
-}
-
-/*
-<div class="form-check">
-  <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
-  <label class="form-check-label" for="flexCheckChecked">
-    Checked checkbox
-  </label>
-</div>
-
-
-*/
+};
 
 export default App;
