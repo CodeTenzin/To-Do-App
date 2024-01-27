@@ -5,7 +5,9 @@ import TaskField from "./components/TaskField";
 const App = () => {
   const [todos, setTodos] = useState<Todo[]>([]);
 
-  const deleteHandler = () => {};
+  const deleteHandler = (id: number) => {
+    setTodos(todos.filter((todo) => todo.id !== id));
+  };
 
   return (
     <div className="container mt-5">
