@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 export interface Todo {
   id: number;
   task: string;
+  // striked: boolean;
 }
 
 interface Props {
@@ -21,8 +22,6 @@ const InputField = ({ onSubmit }: Props) => {
     <form
       onSubmit={handleSubmit((data) => {
         // data - {task: "..."}, data.task - "hello"
-        // if (data !== null) onSubmit(data);
-
         onSubmit(data);
         console.log("Input:", data.task);
 
