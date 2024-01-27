@@ -23,8 +23,6 @@ const InputField = ({ onSubmit }: Props) => {
       onSubmit={handleSubmit((data) => {
         // data - {task: "..."}, data.task - "hello"
         onSubmit(data);
-        console.log("Input:", data.task);
-
         reset();
       })}
     >
