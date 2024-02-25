@@ -5,7 +5,8 @@ interface Props {
   onAdd: () => void;
 }
 
-const FilterTask = ({ todos, onAdd }: Props) => {
+// const FilterTask = ({ todos, onAdd }: Props) => {
+const FilterTask = ({ todos }: Props) => {
   return (
     // <div className="d-flex justify-content-between text-white bg-primary bg-gradient bg-opacity-50 mt-3 p-1">
     <div

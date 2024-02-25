@@ -15,7 +15,7 @@ const InputField = ({ onSubmit }: Props) => {
     register,
     handleSubmit,
     reset,
-    formState: { errors },
+    // formState: { errors },
   } = useForm<Todo>();
 
   return (
